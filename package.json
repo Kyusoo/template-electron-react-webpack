@@ -1,0 +1,83 @@
+{
+    "name": "template-electron-react-webpack",
+    "version": "1.0.0",
+    "description": "Template - Electron + React + Webpack",
+    "main": "dist/main.js",
+    "keywords": [
+        "Electron",
+        "React",
+        "Webpack"
+    ],
+    "author": "kyusoo",
+    "license": "ISC",
+    "scripts": {
+        "start": "npm run webpack && node start",
+        "clean": "rimraf build dist",
+        "webpack": "cross-env NODE_ENV=development npx webpack",
+        "webpack:watch": "cross-env NODE_ENV=development npx webpack -w",
+        "webpack:product": "cross-env NODE_ENV=production npx webpack",
+        "build": "npm run clean && cross-env NODE_ENV=production webpack && electron-builder build"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/preset-env": "^7.16.4",
+        "@babel/preset-react": "^7.16.0",
+        "babel-loader": "^8.2.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "concurrently": "^6.4.0",
+        "copy-webpack-plugin": "^9.1.0",
+        "cross-env": "^7.0.3",
+        "electron": "^16.0.4",
+        "electron-builder": "^22.14.5",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1"
+    },
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "build": {
+        "asar": true,
+        "appId": "example.react.electron",
+        "productName": "Electron-React-Webpack",
+        "files": [
+            "assets/*",
+            "dist/*"
+        ],
+        "mac": {
+            "target": [
+                "default"
+            ],
+            "icon": "assets/icon.icns"
+        },
+        "dmg": {
+            "title": "Electron-React-Webpack",
+            "icon": "icon.icns"
+        },
+        "win": {
+            "target": [
+                "zip",
+                "nsis"
+            ],
+            "publish": [
+                {
+                    "provider": "generic",
+                    "url": "http://URL"
+                }
+            ],
+            "icon": "assets/icon.ico"
+        },
+        "nsis": {
+            "oneClick": false,
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "allowToChangeInstallationDirectory": true,
+            "perMachine": true,
+            "installerIcon": "assets/icon.ico",
+            "installerHeaderIcon": "assets/icon.ico"
+        },
+        "directories": {
+            "output": "./build/"
+        }
+    }
+}
