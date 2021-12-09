@@ -33,6 +33,10 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.css/,
+                use: ['style-loader', 'css-loader']
+            }
         ],
     },
     plugins: [
@@ -40,7 +44,8 @@ module.exports = {
         new webpack.node.NodeTargetPlugin(),
         new webpack.electron.ElectronTargetPlugin(),
         new webpack.DefinePlugin({
-            MODE: JSON.stringify(MODE)
+            MODE: JSON.stringify(MODE),
+            RELOAD: 88
         }),
         new CopyPlugin({ // "copy-webpack-plugin": "^9.1.0" ( Problem occurs in 10.0.0 )
             patterns: [

@@ -4,7 +4,6 @@ const { BrowserWindow, globalShortcut } = require('electron')
 const { Config } = require('./config')
 
 // This module runs on Main Process
-// Changes in this code is not applied automatically to Electron App
 
 class Application {
     constructor(app) {
@@ -62,7 +61,17 @@ class Application {
         if(MODE === 'development')
         {
             this.app.whenReady().then(() => {
-                fs.watch(path.resolve(__dirname), (eventType, filename) => { this.mainWindow.reload() })
+                fs.watch(path.resolve(__dirname), (eventType, filename) => {
+
+                    if(filename === 'view.js') {
+                        this.mainWindow.reload()
+                    }
+
+                    if(filename === 'main.js') {
+                        process.exit(RELOAD) // Refer to DefinePlugin in webpack.config.js
+                    }
+
+                })
 
                 globalShortcut.register('CommandOrControl+F12', () => {
                     this.mainWindow.webContents.openDevTools({ mode: 'detach' })
@@ -72,8 +81,7 @@ class Application {
     }
 
     onLog(event, data) {
-        console.log(`[Main][Log] Received : ${data}`)
-        //event.sender.send(channel, data) // Reply
+        console.log(`[Log][Render → Main] ${data}`)
     }
 }
 

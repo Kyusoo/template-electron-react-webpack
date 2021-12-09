@@ -9,7 +9,7 @@ class Config {
         "production": {
             width: 600,
             height: 400,
-            title: `Electron + React + Webpack`
+            title: `Electron + React + Webpack (PRODUCT)`
         }
     }
 }

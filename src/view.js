@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { IPC } from './ipc'
+import Style from './view.css'
 
 // This module runs on Render Process
 
@@ -9,7 +10,7 @@ const App = () => {
     const [message, setMessage] = useState('')
 
     const onClickHandler = (e) => {
-        console.log(`[Renderer][Log] ${message}`)
+        console.log(`[Log][Render → Main] ${message}`)
 
         IPC.sendToMain('Log', message)
     }
@@ -17,6 +18,7 @@ const App = () => {
     return (
         <div>
             <h1>Electron + React + WebPack</h1>
+            <p>Build in <span className={MODE}>{MODE}</span> mode</p>
             { MODE === 'development' &&
             <div>
                 <h3>Open Dev Tool : Cmd(MAC) or Ctrl(Windows) + F12 </h3>
