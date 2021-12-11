@@ -54,7 +54,7 @@
         },
         "dmg": {
             "title": "Electron-React-Webpack",
-            "icon": "icon.icns"
+            "icon": "assets/icon.icns"
         },
         "win": {
             "target": [
