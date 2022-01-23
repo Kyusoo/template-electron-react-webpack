@@ -13,6 +13,11 @@ class Application {
     onReady() {
         this.createMainWindow()
         this.mainWindow.show()
+
+        if (MODE === 'development') {
+            this.mainWindow.setAlwaysOnTop(true)
+            this.mainWindow.setAlwaysOnTop(false)
+        }
     }
 
     onActivate() {

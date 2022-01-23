@@ -51,10 +51,6 @@ const MODE = process.env.NODE_ENV || 'development'
 
 console.log(`MODE = ${MODE}`)
 
-const externalModules = {
-    electron: 'commonjs electron',
-}
-
 eventEmitter.on('webpack-watch', () => {
 
     webpack(config).watch(100, (err, stats) => {
