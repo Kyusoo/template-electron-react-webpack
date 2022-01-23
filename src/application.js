@@ -56,18 +56,17 @@ class Application {
         })
 
         this.mainWindow.removeMenu()
-        this.mainWindow.loadFile(path.resolve(__dirname, 'view.html'))
+        this.mainWindow.loadFile(path.resolve(__dirname, 'index.html'))
 
-        if(MODE === 'development')
-        {
+        if (MODE === 'development') {
             this.app.whenReady().then(() => {
                 fs.watch(path.resolve(__dirname), (eventType, filename) => {
 
-                    if(filename === 'view.js') {
+                    if (filename === 'index.js') {
                         this.mainWindow.reload()
                     }
 
-                    if(filename === 'main.js') {
+                    if (filename === 'main.js') {
                         process.exit(RELOAD) // Refer to DefinePlugin in webpack.config.js
                     }
 

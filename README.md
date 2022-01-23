@@ -8,13 +8,7 @@ npm install
 
 ## Start
 ```bash
-npm run webpack
-```
-
-then
-
-```bash
-npx electron .
+npm run start
 ```
 
 ## Build (Packaging)

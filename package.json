@@ -12,11 +12,11 @@
     "license": "ISC",
     "scripts": {
         "start": "node start",
+        "start:pro": "cross-env NODE_ENV=production node start",
         "clean": "rimraf build dist",
-        "webpack": "cross-env NODE_ENV=development npx webpack",
-        "webpack:watch": "cross-env NODE_ENV=development npx webpack -w",
-        "webpack:product": "cross-env NODE_ENV=production npx webpack",
-        "build": "npm run clean && cross-env NODE_ENV=production webpack && electron-builder build"
+        "webpack": "npx webpack",
+        "webpack:pro": "cross-env NODE_ENV=production webpack",
+        "build": "npm run clean && npm run webpack:pro && electron-builder build"
     },
     "devDependencies": {
         "@babel/core": "^7.16.0",

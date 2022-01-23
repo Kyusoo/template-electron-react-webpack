@@ -1,6 +1,6 @@
 const { app } = require('electron')
 const { Application } = require('./application')
-const { IPC } = require('./ipc')
+const IPC = require('./ipc')
 
 const application = new Application(app)
 

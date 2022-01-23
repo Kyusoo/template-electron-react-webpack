@@ -7,20 +7,21 @@ const SRC = path.resolve(__dirname, 'src')
 const DIST = path.resolve(__dirname, 'dist')
 const MODE = process.env.NODE_ENV || 'development'
 
+const externalModules = {
+    electron: 'commonjs electron'
+}
+
 module.exports = {
     entry: {
         main: `${SRC}/main.js`,
-        view: `${SRC}/view.js`
+        index: `${SRC}/renderer/index.js`
     },
     output: {
         publicPath: '',
         filename: '[name].js',
         path: DIST,
-        libraryTarget: 'commonjs2'
     },
-    externals: {
-        'electron': 'commonjs2 electron'
-    },
+    externals: externalModules,
     module: {
         rules: [
             {
@@ -29,7 +30,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env' ,'@babel/preset-react'],
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
                     },
                 },
             },
@@ -50,7 +51,7 @@ module.exports = {
         new CopyPlugin({ // "copy-webpack-plugin": "^9.1.0" ( Problem occurs in 10.0.0 )
             patterns: [
                 {
-                    from: `${SRC}/view.html`
+                    from: `${SRC}/renderer/index.html`
                 }
             ]
         }),
